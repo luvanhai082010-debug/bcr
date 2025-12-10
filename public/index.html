@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Vhai Baccarat Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="/socket.io/socket.io.js"></script> 
+</head>
+<body>
+    <div id="main-container">
+        
+        <div id="auth-screen">
+            <h2>Vhai Baccarat</h2>
+            
+            <div id="auth-buttons">
+                <button onclick="showRegistrationForm()">Đăng Ký</button>
+                <button onclick="showLoginForm()">Đăng Nhập</button>
+                <button onclick="showLoginForm('Lvh210')">Admin</button>
+            </div>
+
+            <form id="register-form" style="display: none;">
+                <h3>Đăng Ký Tài Khoản</h3>
+                <input type="text" id="reg-username" placeholder="Tên đăng nhập" required><br>
+                <input type="password" id="reg-password" placeholder="Mật khẩu" required><br>
+                <input type="password" id="reg-confirm-password" placeholder="Xác nhận Mật khẩu" required><br>
+                <button type="submit">Đăng Ký & Nhận Mã</button>
+                <p id="reg-message" class="message"></p>
+                <a href="#" onclick="showAuthButtons()">Quay lại</a>
+            </form>
+
+            <form id="login-form" style="display: none;">
+                <h3 id="login-title">Đăng Nhập</h3>
+                <input type="text" id="login-username" placeholder="Tên đăng nhập" required><br>
+                <input type="password" id="login-password" placeholder="Mật khẩu" required><br>
+                <button type="submit">Đăng Nhập</button>
+                <p id="login-message" class="message"></p>
+                <a href="#" onclick="showAuthButtons()">Quay lại</a>
+            </form>
+        </div>
+
+        <div id="loading-screen" style="display: none;">
+            <div class="loader-content">
+                <p class="brand-name">Vhai Baccarat Game</p>
+                <div id="loading-bar-container">
+                    <div id="loading-bar"></div>
+                </div>
+                <div id="loading-percentage">0%</div>
+            </div>
+        </div>
+        
+        <div id="game-container" style="display: none;"> 
+            <h1>Bàn Baccarat</h1>
+            <p>Số dư: <span id="user-balance">0.00</span></p>
+
+            <div id="cheat-tool-display" style="border: 2px dashed red; padding: 10px; margin: 10px 0; font-size: 1.5em; font-weight: bold;">
+                ROBOT: Chưa có lệnh chạy
+            </div>
+
+            <div id="betting-area">
+                <button onclick="placeBet('player', 1000)">Cược Player 1,000</button>
+                <button onclick="placeBet('banker', 1000)">Cược Banker 1,000</button>
+                <button onclick="placeBet('tie', 1000)">Cược Tie 1,000</button>
+                <button id="checkin-btn">Điểm Danh Ngày</button> 
+                <button id="request-grant-btn" onclick="requestGrant()">Yêu cầu Cấp Xu (100k)</button>
+                <button id="admin-panel-btn" style="display: none;" onclick="window.location.href='admin/panel.html'">Admin Panel</button>
+                <button onclick="logout()">Đăng Xuất</button>
+            </div>
+
+            <div id="result-area">
+                Kết quả: <span id="game-result">Chờ cược...</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
